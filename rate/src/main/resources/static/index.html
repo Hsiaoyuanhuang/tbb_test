@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CRNC Rate</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<table id="crncrateTable">
+		<tr>
+			<th>CRNC_ID</th>
+			<th>BUY_RATE</th>
+			<th>SELL_RATE</th>
+			<th>BOOK_RATE</th>
+			<th>MESSAGE_CODE</th>
+			<th>DOT</th>
+			<th>UPDATE_USER</th>
+			<th>UPDATE_TIME</th>
+		</tr>
+	</table>
+
+	<script>
+		$(document).ready(function() {
+			$.ajax({
+				url: "/crncrate",
+				type: "GET",
+				success: function(data) {
+					$.each(data, function(i, item) {
+						$('#crncrateTable').append('<tr><td>' + item.crncId + '</td><td>' + item.buyRate + '</td><td>' + item.sellRate + '</td><td>' + item.bookRate + '</td><td>' + item.messageCode + '</td><td>' + item.dot + '</td><td>' + item.updateUser + '</td><td>' + item.updateTime + '</td></tr>');
+					});
+				}
+			});
+		});
+	</script>
+</body>
+</html>
